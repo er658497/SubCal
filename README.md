@@ -1,25 +1,24 @@
-# Crew Schedule
+# SubCal
 
-A lightweight Android app for one subcontractor crew moving among remodeling projects.
+A shared subcontractor scheduling app for remodeling project managers.
 
-## UX
+## Current behavior
 
-- Week Mode is the default and always opens the current Monday-Friday workweek.
-- Projects are alphabetized and editable/deletable.
-- Each project/day cycles `✓` → `X` → `?`.
-- Calendar Mode is a true five-column Monday-Friday calendar. It shows only projects scheduled with `✓`; green cards contain no extra checkmark.
-- Offline edits are saved immediately on-device.
+- First use asks for first and last name; the device remembers the identity.
+- Week View shows Monday-Friday projects and lets each project/day contain multiple trades.
+- Every trade assignment records the scheduler automatically and displays their initials.
+- Removing another person's assignment requires confirmation and creates an in-app notification for that scheduler.
+- All Projects is the default; My Jobs filters to projects owned by the current user.
+- Calendar View lists the trades scheduled on each workday, without project names.
+- Edit Subs manages trade names and colors.
+- Shared state syncs through Supabase.
+
+The Android app bundles the same web UI so the web and Android versions use the same scheduling behavior.
 
 ## Supabase
 
-Run `supabase.sql` in Supabase SQL Editor. The app reads `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SCHEDULE_ID` from Gradle project properties or environment variables. `SCHEDULE_ID` defaults to `crew-schedule-shared`.
-
-For GitHub Actions, add repository secrets named `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SCHEDULE_ID` if shared cloud sync is desired in the built APK.
+Run `supabase.sql` in Supabase SQL Editor. Configure `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and optional `SCHEDULE_ID` as GitHub Actions secrets or Gradle properties.
 
 ## Build
 
-The project uses Android Gradle Plugin 9.4, Gradle 9.6, Kotlin 2.4.10, and the September 2026 Compose BOM. GitHub Actions builds a debug APK and uploads it as `crew-schedule-debug-apk`.
-
-<!-- Sync configuration updated; rebuild triggered. -->
-
-<!-- GitHub write-access test: testing testing this worked -->
+GitHub Actions builds the Android debug APK.
