@@ -6,6 +6,10 @@ create table if not exists public.crew_schedule (
 
 alter table public.crew_schedule enable row level security;
 
+drop policy if exists "crew schedule read" on public.crew_schedule;
+drop policy if exists "crew schedule insert" on public.crew_schedule;
+drop policy if exists "crew schedule update" on public.crew_schedule;
+
 create policy "crew schedule read"
 on public.crew_schedule for select to anon using (true);
 
