@@ -9,7 +9,7 @@ android {
     compileSdkMinor = 0
 
     defaultConfig {
-        applicationId = "com.example.crewschedule"
+        applicationId = "com.subcal.app"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
