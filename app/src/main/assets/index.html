@@ -25,7 +25,7 @@
 const decodeB64=s=>s?atob(s):""; const URL=decodeB64("__SUPABASE_URL_B64__"),KEY=decodeB64("__SUPABASE_KEY_B64__"),ID=decodeB64("__SCHEDULE_ID_B64__"),USERKEY="subcal-user";
 const colors=["#4da6ff","#ffd84d","#aeb7c4","#ffffff","#b77cff","#ff8c42","#54d88a","#ff6b9d"];
 let state=JSON.parse(localStorage.getItem("subcal-state")||'{"users":[],"trades":[],"projects":[],"assignments":{},"notifications":[]}'),me=JSON.parse(localStorage.getItem(USERKEY)||"null"),mode="week",filter="all",monday=getMonday(new Date()),month=new Date(new Date().getFullYear(),new Date().getMonth(),1),editing=null;
-const $=x=>document.getElementById(x), uid=()=>crypto.randomUUID(), dateKey=d=>new Date(d).toISOString().slice(0,10);
+const $=x=>document.getElementById(x), uid=()=>{try{if(window.crypto&&typeof window.crypto.randomUUID==="function")return window.crypto.randomUUID()}catch(e){}return "id-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,12)}, dateKey=d=>new Date(d).toISOString().slice(0,10);
 function getMonday(d){d=new Date(d);d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d}
 function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
 function initials(n){return n.trim().split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase()}
